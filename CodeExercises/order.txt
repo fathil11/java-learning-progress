@@ -13,3 +13,4 @@
 14. NumberOfDaysInMonth
 15. SumOdd
 16. NumberPalindrome
+17. FirstLastDigitSum
