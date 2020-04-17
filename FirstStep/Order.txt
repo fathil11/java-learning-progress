@@ -1,0 +1,6 @@
+1. Hello World
+2. ByteShortIntLong
+3. FloatAndDouble
+4. CharAndBoolean
+5. Strings
+6. IfElseTernary

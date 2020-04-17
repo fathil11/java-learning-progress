@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="23d11fff-39bd-4594-a2c9-c7c26fb12ca6" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ProjectId" id="1aNjbVZufBCxefeBqTMMdnb2SD4" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="academy.learnprogramming.Main" />
+      <module name="StatementsWhiteSpaceAndIndenting" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="23d11fff-39bd-4594-a2c9-c7c26fb12ca6" name="Default Changelist" comment="" />
+      <created>1586583016417</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1586583016417</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="65" y="10" key="new project wizard" timestamp="1586593909525">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state x="65" y="10" key="new project wizard/0.0.1366.768@0.0.1366.768" timestamp="1586593909525" />
+    <state x="339" y="172" key="run.anything.popup" timestamp="1586583971804">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state x="339" y="172" key="run.anything.popup/0.0.1366.768@0.0.1366.768" timestamp="1586583971804" />
+  </component>
+</project>

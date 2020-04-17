@@ -1,0 +1,14 @@
+1. SpeedConverter
+2. MegabytesConverter
+3. BarkingDog
+4. LeapYear
+5. DecimalComparator
+6. EqualSumChecker
+7. TeenNumberChecker
+9. AreaCalculator
+10. MinutesToYearsDaysCalculator
+11. IntEqualityPrinter
+12. PlayingCat
+13. NumberInWord
+14. NumberOfDaysInMonth
+15. SumOdd
