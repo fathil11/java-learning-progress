@@ -14,3 +14,4 @@
 15. SumOdd
 16. NumberPalindrome
 17. FirstLastDigitSum
+18. EventDigitSum
