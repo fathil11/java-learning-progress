@@ -1,3 +1,4 @@
 1. Switch
 2. ForLoop
 3. WhileDoWhile
+4. ParsingValueFromString
