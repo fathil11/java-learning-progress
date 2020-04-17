@@ -19,3 +19,4 @@
 20. LastDigitChecker
 21. GreatestCommonDivisor
 22. FactorPrinter
+23. PerfectNumber
