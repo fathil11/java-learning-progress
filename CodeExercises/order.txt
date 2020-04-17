@@ -16,3 +16,4 @@
 17. FirstLastDigitSum
 18. EventDigitSum
 19. SharedDigit
+20. LastDigitChecker
