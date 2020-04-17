@@ -18,3 +18,4 @@
 19. SharedDigit
 20. LastDigitChecker
 21. GreatestCommonDivisor
+22. FactorPrinter
