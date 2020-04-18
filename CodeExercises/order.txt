@@ -22,4 +22,4 @@
 23. PerfectNumber
 24. NumberToWords
 25. FlourPacker(Tricky)
-26. LargestPrime
+26. LargestPrimeNumber
