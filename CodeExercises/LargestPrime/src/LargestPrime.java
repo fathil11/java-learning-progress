@@ -3,10 +3,13 @@ public class LargestPrime {
         if (number < 2) {
             return -1;
         }
-        for (int i = 2; i < number; i++) {
-            if ((number % i) == 0) {
-                number /= i;
-                i--;
+
+        int divider = 2;
+        while(divider < number){
+            if(number % divider == 0){
+                number /= divider;
+            }else{
+                divider++;
             }
         }
         return number;
