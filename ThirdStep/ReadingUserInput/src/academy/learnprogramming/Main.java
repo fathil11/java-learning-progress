@@ -28,11 +28,14 @@ public class Main {
             System.out.println("Invalid Value");
         }
 
-        // Challenge
-        sumTenNumbers();
+        // Challenge #1
+//        sumTenNumbers();
 
+        // Challenge #2
+        printMinMaxNumbers();
         scanner.close();
     }
+
 
     public static void sumTenNumbers() {
         Scanner scanner = new Scanner(System.in);
@@ -40,20 +43,48 @@ public class Main {
         int total = 0;
         boolean isValid = true;
         while (counter < 10 && isValid) {
-            System.out.println("Enter number #" + (counter+1) + ":");
-            if(scanner.hasNextInt()){
+            System.out.println("Enter number #" + (counter + 1) + ":");
+            if (scanner.hasNextInt()) {
                 total += scanner.nextInt();
-            }else{
+            } else {
                 isValid = false;
             }
             counter++;
         }
 
-        if(isValid){
+        if (isValid) {
             System.out.println("Sum of ten number is equal to " + total);
-        }else{
+        } else {
             System.out.println("Invalid Number");
         }
 
+    }
+
+    public static void printMinMaxNumbers() {
+        Scanner scanner = new Scanner(System.in);
+        int min = 0;
+        int max = 0;
+        while (true) {
+            System.out.println("Enter Number : ");
+            if (scanner.hasNextInt()) {
+                if (min == 0 || max == 0) {
+                    min = scanner.nextInt();
+                    max = min;
+                } else {
+                    int number = scanner.nextInt();
+                    if (number < min) min = number;
+                    else if (number > max) max = number;
+                }
+                System.out.println("---");
+                System.out.println("Max Value : " + max);
+                System.out.println("Min Value : " + min);
+                System.out.println("---");
+            } else {
+                System.out.println("Max Value : " + max);
+                System.out.println("Min Value : " + min);
+                break;
+            }
+            scanner.nextLine();
+        }
     }
 }
