@@ -1,5 +1,5 @@
 public class Main {
     public static void main(String[] args) {
-        DiagonalStar.printSquareStar(7);
+        DiagonalStar.printSquareStar(99);
     }
 }
