@@ -1,0 +1,25 @@
+1. SpeedConverter
+2. MegabytesConverter
+3. BarkingDog
+4. LeapYear
+5. DecimalComparator
+6. EqualSumChecker
+7. TeenNumberChecker
+9. AreaCalculator
+10. MinutesToYearsDaysCalculator
+11. IntEqualityPrinter
+12. PlayingCat
+13. NumberInWord
+14. NumberOfDaysInMonth
+15. SumOdd
+16. NumberPalindrome
+17. FirstLastDigitSum
+18. EventDigitSum
+19. SharedDigit
+20. LastDigitChecker
+21. GreatestCommonDivisor
+22. FactorPrinter
+23. PerfectNumber
+24. NumberToWords
+25. FlourPacker(Good One)
+26. LargestPrime
