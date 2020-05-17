@@ -28,3 +28,4 @@
 29. SimpleCalculator
 30. Person
 31. WallArea
+32. Point
