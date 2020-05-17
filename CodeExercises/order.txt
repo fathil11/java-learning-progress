@@ -25,3 +25,5 @@
 26. LargestPrime
 27. InputCalculator
 28. PaintJob
+29. SimpleCalculator
+30. Person
