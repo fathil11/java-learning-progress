@@ -23,3 +23,5 @@
 24. NumberToWords
 25. FlourPacker(Good One)
 26. LargestPrime
+27. InputCalculator
+28. PaintJob
