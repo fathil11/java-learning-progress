@@ -29,3 +29,4 @@
 30. Person
 31. WallArea
 32. Point
+33. CarpetCostCalculator
