@@ -32,3 +32,4 @@
 33. CarpetCostCalculator
 34. ComplexOperation
 35. Cylinder
+36. Cuboid
