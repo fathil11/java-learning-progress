@@ -5,10 +5,8 @@ public class Main {
     private static Scanner s = new Scanner(System.in);
 
     public static void main(String[] args) {
-        bank = Bank.create("BCA");
+        bank = new Bank("BCA");
         boolean exit = false;
-
-        printMenu();
 
         while (!exit) {
             int option;
