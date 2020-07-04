@@ -5,74 +5,119 @@ public class Bank {
     private ArrayList<Branch> branches;
 
     public Bank(String name) {
-        this.name = name;
         this.branches = new ArrayList<Branch>();
+        this.name = name;
     }
 
-    public static Bank create(String name) {
+    public static Bank createBank(String name) {
         return new Bank(name);
-    }
-
-    public String getName() {
-        return name;
     }
 
     public ArrayList<Branch> getBranches() {
         return branches;
     }
 
-    public Branch getBranch(int i) {
-        return branches.get(i);
+    public Branch getBranch(int position) {
+        if(position < 0 && position >= this.branches.size()){
+            System.out.println("Branch is not exists");
+            return null;
+        }
+        return this.branches.get(position);
     }
 
-    public String addBranch(String name) {
+    public String getName() {
+        return name;
+    }
+
+    public boolean addBranch(String branchName) {
+        if (queryBranch(branchName) == null) {
+            this.branches.add(Branch.createBranch(branchName));
+            return true;
+        }
+        System.out.println("Branch already registered");
+        return false;
+    }
+
+    public boolean addCustomer(String branchName, String customerName, double firstTransaction) {
+        Branch branch = queryBranch(branchName);
+        if (branch != null) {
+            return branch.addCustomer(customerName, firstTransaction);
+        }
+        System.out.println("Branch is not exists");
+        return false;
+    }
+
+    public boolean addCustomerTransaction(String branchName, String customerName, double transaction) {
+        Branch branch = queryBranch(branchName);
+        if (branch != null) {
+            return branch.addCustomerTransaction(customerName, transaction);
+        }
+        System.out.println("Branch is not exists");
+        return false;
+    }
+
+    public boolean updateBranchName(String oldBranchName, String newBranchName) {
+        Branch branch = queryBranch(oldBranchName);
+        if (branch != null) {
+            branch.setName(newBranchName);
+            return true;
+        }
+        System.out.println("Branch is not exists");
+        return false;
+    }
+
+    public boolean updateCustomerName(String branchName, String oldCustomerName, String newCustomerName) {
+        Branch branch = queryBranch(branchName);
+        if (branch != null) {
+            return branch.updateCustomerName(oldCustomerName, newCustomerName);
+        }
+        System.out.println("Branch is not exists");
+        return false;
+    }
+
+    public boolean removeBranch(int position) {
+        if (position >= 0 && position < this.branches.size()) {
+            this.branches.remove(position);
+            return true;
+        }
+        System.out.println("Branch is not exists");
+        return false;
+    }
+
+    public boolean printBranches() {
+        if (!branchIsEmpty()) {
+            for (int i = 0; i < this.branches.size(); i++) {
+                System.out.println((i + 1) + ". " + getBranch(i).getName());
+            }
+            return true;
+        }
+        System.out.println("Branch is empty");
+        return false;
+    }
+
+    private boolean branchIsEmpty() {
+        return this.branches.size() == 0;
+    }
+
+    private int findBranch(Branch branch) {
+        return this.branches.indexOf(branch);
+    }
+
+    private int findBranch(String name) {
         for (int i = 0; i < this.branches.size(); i++) {
             if (this.getBranch(i).getName().equals(name)) {
-                return "Branch already exists !";
+                return i;
             }
         }
+        return -1;
+    }
 
-        if (this.branches.add(Branch.create(name))) {
-            return "Success";
+    public Branch queryBranch(String name) {
+        int index = findBranch(name);
+        if (index < 0) {
+            return null;
         }
-
-        return "Something wrong when adding branch !";
+        return this.getBranch(index);
     }
 
-    public void printBranches() {
-        for (int i = 0; i < this.branches.size(); i++) {
-            System.out.println((i + 1) + ". " + this.getBranch(i).getName());
-        }
-    }
-
-    public boolean branchIsExists(int position) {
-        return position < this.branches.size();
-    }
-
-    public void printCustomers() {
-        for (int i = 0; i < this.branches.size(); i++) {
-            System.out.println("--- " + this.getBranch(i).getName() + " ---");
-            for (int j = 0; j < this.getBranch(i).getCustomers().size(); j++) {
-                System.out.println((j + 1) + ". " + this.getBranch(i).getCustomer(j).getName());
-            }
-        }
-    }
-
-    public void printCustomersWithDetail() {
-        for (int i = 0; i < this.branches.size(); i++) {
-            System.out.println("--- " + this.getBranch(i).getName() + " ---");
-            for (int j = 0; j < this.getBranch(i).getCustomers().size(); j++) {
-                System.out.println((j + 1) + ". " + this.getBranch(i).getCustomer(j).getName());
-                for (int k = 0; k < this.getBranch(i).getCustomer(j).getTransaction().size(); k++) {
-                    System.out.println("   -> (" + this.getBranch(i).getCustomer(j).getTransaction(k) + ")");
-                }
-            }
-        }
-    }
-
-    public void printCustomerFromBranch(int branchPosition) {
-        for (int i = 0; i < this.getBranch(branchPosition).getCustomers().size(); i++) {
-            System.out.println((i + 1) + ". " + this.getBranch(branchPosition).getCustomer(i).getName());
-        }
-    }
 }

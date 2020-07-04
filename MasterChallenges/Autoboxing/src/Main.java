@@ -1,44 +1,57 @@
 import java.util.Scanner;
 
 public class Main {
-    private static Bank bank;
-    private static Scanner s = new Scanner(System.in);
+    public static Bank bank;
+    public static Scanner scanner;
 
     public static void main(String[] args) {
+        scanner = new Scanner(System.in);
         bank = new Bank("BCA");
+
         boolean exit = false;
+        printMenu();
 
         while (!exit) {
             int option;
-            System.out.print("\nChoose option : ");
-            option = s.nextInt();
-            s.nextLine();
+            System.out.print("\nSelect option : ");
+            option = scanner.nextInt();
+            scanner.nextLine();
 
             switch (option) {
                 case 1:
                     printMenu();
                     break;
                 case 2:
-                    addBranch();
+                    printBranch();
                     break;
                 case 3:
-                    addCustomer();
+                    printCustomer();
                     break;
                 case 4:
-                    addTransaction();
+                    printCustomerTransaction();
                     break;
                 case 5:
-                    printBranches();
+                    addBranch();
                     break;
                 case 6:
-                    printCustomers();
+                    addCustomer();
                     break;
                 case 7:
-                    printCustomersWithDetails();
+                    addCustomerTransaction();
                     break;
                 case 8:
-
+                    updateBranchName();
+                    break;
                 case 9:
+                    updateCustomerName();
+                    break;
+                case 10:
+                    removeBranch();
+                    break;
+                case 11:
+                    removeCustomer();
+                    break;
+                case 12:
                     exit = true;
                     break;
             }
@@ -46,110 +59,153 @@ public class Main {
     }
 
     public static void printMenu() {
-        System.out.println("--- " + bank.getName() + " Bank ---");
-        System.out.println("1. Print Menu");
-        System.out.println("2. Add Branch");
-        System.out.println("3. Add Customer");
-        System.out.println("4. Add Transaction");
-        System.out.println("5. Print Branches");
-        System.out.println("6. Print All Customers");
-        System.out.println("7. Print All Customers with Details");
-        System.out.println("8. Print All Customers from Branch");
-        System.out.println("9. Exit");
-        System.out.println("--------------------------------------");
+        System.out.println("-- Bank " + bank.getName() + " --");
+        System.out.println("1. Print menu");
+        System.out.println("2. Print Branch");
+        System.out.println("3. Print Customer");
+        System.out.println("4. Print Customer Transaction");
+        System.out.println("5. Add Branch");
+        System.out.println("6. Add Customer");
+        System.out.println("7. Add Customer Transaction");
+        System.out.println("8. Update Branch name");
+        System.out.println("9. Update Customer name");
+        System.out.println("10. Delete Branch");
+        System.out.println("11. Delete Customer");
+        System.out.println("12. Exit");
     }
 
-    public static void addBranch() {
-        String name;
-        System.out.print("Input branch name : ");
-        name = s.nextLine();
-
-        System.out.println(bank.addBranch(name));
-    }
-
-    public static void addCustomer() {
-        printBranches();
-
-        int branchPosition;
-        System.out.print("Chose branch : ");
-        branchPosition = s.nextInt() - 1;
-        s.nextLine();
-
-        if (!bank.branchIsExists(branchPosition)) {
-            System.out.println("Branch not found !");
-            return;
-        }
-
-        String name;
-        System.out.print("Input customer name : ");
-        name = s.nextLine();
-
-        double firstTransaction;
-        System.out.print("Input customer first transaction : ");
-        firstTransaction = s.nextInt();
-        s.nextLine();
-
-        System.out.println(bank.getBranch(branchPosition).addCustomer(name, firstTransaction));
-    }
-
-    public static void addTransaction() {
-        printBranches();
-
-        int branchPosition;
-        System.out.print("Chose branch : ");
-        branchPosition = s.nextInt() - 1;
-        s.nextLine();
-
-        if (!bank.branchIsExists(branchPosition)) {
-            System.out.println("Branch not found !");
-            return;
-        }
-
-        bank.printCustomerFromBranch(branchPosition);
-
-        int customerPosition;
-        System.out.print("Chose customer : ");
-        customerPosition = s.nextInt() - 1;
-        s.nextLine();
-
-        if (!bank.getBranch(branchPosition).customerIsExists(customerPosition)) {
-            System.out.println("Customer not found !");
-            return;
-        }
-
-        double amount;
-        System.out.print("Input customer transaction : ");
-        amount = s.nextInt();
-        s.nextLine();
-
-        System.out.println(bank.getBranch(branchPosition).getCustomer(customerPosition).addTransaction(amount));
-    }
-
-    public static void printBranches() {
+    public static void printBranch() {
         bank.printBranches();
     }
 
-    public static void printCustomers() {
-        bank.printCustomers();
-    }
-
-    public static void printCustomersWithDetails() {
-        bank.printCustomersWithDetail();
-    }
-
-    public static void printCustomersFromBranch() {
-        printBranches();
-
-        int branchPosition;
-        System.out.print("Chose branch : ");
-        branchPosition = s.nextInt() - 1;
-        s.nextLine();
-
-        if (!bank.branchIsExists(branchPosition)) {
-            System.out.println("Branch not found !");
-            return;
+    public static void printCustomer() {
+        Branch branch = getBranch();
+        if (branch != null) {
+            branch.printCustomers();
         }
-
-        bank.printCustomerFromBranch(branchPosition);
     }
+
+    public static void printCustomerTransaction() {
+        Branch branch = getBranch();
+        if (branch != null) {
+            Customer customer = getCustomer(branch);
+
+            if (customer != null) {
+                customer.printTransaction();
+            }
+        }
+    }
+
+    public static void addBranch() {
+        String branchName;
+        System.out.print("Input branch name :");
+        branchName = scanner.nextLine();
+
+        if (bank.addBranch(branchName)) {
+            System.out.println("Branch added successfully");
+        }
+    }
+
+    public static void addCustomer() {
+        Branch branch = getBranch();
+        if (branch != null) {
+            System.out.print("Input customer name : ");
+            String customerName = scanner.nextLine();
+            System.out.print("Input customer first transaction : ");
+            double customerFirstTransaction = scanner.nextDouble();
+            scanner.nextLine();
+            if (branch.addCustomer(customerName, customerFirstTransaction)) {
+                System.out.println("Customer added successfully");
+            }
+        }
+    }
+
+    public static void addCustomerTransaction() {
+        Branch branch = getBranch();
+        if (branch != null) {
+            if (branch.printCustomers()) {
+                Customer customer = getCustomer(branch);
+                if (customer != null) {
+                    System.out.print("Input customer transaction : ");
+                    double transaction = scanner.nextDouble();
+                    scanner.nextLine();
+
+                    customer.addTransaction(transaction);
+                    System.out.println("Transaction added successfully");
+                }
+            }
+        }
+    }
+
+    public static void updateBranchName() {
+        Branch branch = getBranch();
+        if (branch != null) {
+            System.out.print("Input new branch name : ");
+            String newBranchName = scanner.nextLine();
+            branch.setName(newBranchName);
+            System.out.println("Branch name updated successfully");
+        }
+    }
+
+    public static void updateCustomerName() {
+        Branch branch = getBranch();
+        if (branch != null) {
+            Customer customer = getCustomer(branch);
+            if (customer != null) {
+                System.out.print("Input customer new name : ");
+                String newCustomerName = scanner.nextLine();
+                customer.setName(newCustomerName);
+                System.out.println("Customer name updated successfully");
+            }
+        }
+    }
+
+    public static void removeBranch() {
+        if (bank.printBranches()) {
+            System.out.print("Input branch position : ");
+            int branchPosition = scanner.nextInt();
+            bank.removeBranch(branchPosition - 1);
+        }
+    }
+
+    public static void removeCustomer() {
+        Branch branch = getBranch();
+        if (branch != null) {
+            if (branch.printCustomers()) {
+                System.out.print("Input customer position : ");
+                int customerPosition = scanner.nextInt();
+                scanner.nextLine();
+                branch.removeCustomer(customerPosition);
+            }
+        }
+    }
+
+    private static Branch getBranch() {
+        if (bank.printBranches()) {
+            int branchPosition;
+
+            System.out.print("Input branch position : ");
+            branchPosition = scanner.nextInt();
+            scanner.nextLine();
+
+            Branch branch = bank.getBranch(branchPosition - 1);
+            return branch;
+        }
+        return null;
+    }
+
+    private static Customer getCustomer(Branch branch) {
+        int customerPosition;
+        if (branch.printCustomers()) {
+            System.out.print("Input customer position : ");
+            customerPosition = scanner.nextInt();
+            scanner.nextLine();
+
+            Customer customer = branch.getCustomer(customerPosition - 1);
+            return customer;
+        }
+        return null;
+    }
+
+
 }
